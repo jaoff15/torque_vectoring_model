@@ -65,6 +65,11 @@ s(out_off+1:out_off+out,1) = zeros(out,1);
 s(out_off+1:out_off+out,2) = 0:-1:-out+1;
 
 
+plot(s(:,1), s(:,2))
+xlim([-w*2,w*2])
+ylim([-w*2,w*2])
+
+%% Animate drive
 x = s(:,1);
 y = s(:,2);
 for i = 1:N
@@ -76,3 +81,57 @@ for i = 1:N
     scatter([x(i)],[y(i)])
     pause(0.05);
 end
+%% Get steering angles
+
+sa = zeros(N,1);
+
+for i = 2:N-1
+    
+    x0 = s(i-1,1);
+    y0 = s(i-1,2);
+    x1 = s(i,1);
+    y1 = s(i,2);
+    x2 = s(i+1,1);
+    y2 = s(i+1,2);
+    dir1 = 0;
+    dir2 = 0;
+	if y0==y1
+        dir = 0;
+    elseif x0==x1
+        dir = 0;
+    else
+        dir1 = (y1-y0)/(x1-x0);
+    end
+    
+    if y1==y2
+        di2 = 0;
+    elseif x1==x2
+        di2 = 0;
+    else
+        dir2 = (y2-y1)/(x2-x1);
+    end
+    
+    if dir1 ~= 0 && dir2 ~= 0
+        sa(i) = dir1 - dir2;
+        if sa(i) > 5
+            break
+        end
+    else
+        sa(i) = 0;
+    end
+    
+    
+    figure(2)
+    clf(2)
+    plot(1:i, sa(1:i))
+    pause(0.01)
+%     
+%     p1 = [x1,y1];
+%     p2 = [x2,y2];
+%     sa(i) = p2 - p1;
+end
+
+
+
+
+
