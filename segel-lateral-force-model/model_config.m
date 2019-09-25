@@ -16,7 +16,7 @@ W = 200;    % Vehicle weight
 % Tire, dry	Road, dry	Clean and Dry       1	
 % Tire, wet	Road, wet	Clean and Dry       0.2
 mu = 1;     % Friction coefficient, Dry tire vs dry road
-mu = 0.2;   % Friction coefficient, Wet tire vs wet road
+% mu = 0.2;   % Friction coefficient, Wet tire vs wet road
 
 c_f = 200;    % Cornering stiffness of front tires [N/deg]
 c_r = 200;    % Cornering stiffness of rear tires [N/deg]
