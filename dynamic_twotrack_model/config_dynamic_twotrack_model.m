@@ -6,7 +6,7 @@ length_rear         = 1;
 length_width        = 0.5; 
 
 % Cornering stiffnesses
-cornering_stiffness = 5000;
+cornering_stiffness = 1000;
 mass                = 200;
 yaw_inertia         = 1000;
 
